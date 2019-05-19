@@ -1,0 +1,18 @@
+<table>
+
+  <tbody>
+    <tr *ngFor="let character of characters">
+      <td>{{ character.ordernumber }}</td>
+      <td>{{ character.orderduedate }}</td>
+      <td>{{ character.customername }}</td>
+      <td>{{ character.customeraddress }}</td>
+      <td>{{ character.customerphone }}</td>
+       <td>{{ character.customername }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<ng2-smart-table 
+    [settings]="settings" 
+    [source]="characters">
+</ng2-smart-table>
