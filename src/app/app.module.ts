@@ -8,17 +8,15 @@ import { CustomMaterialModule } from './core/material.module';
 import { AppComponent } from './app.component';
 import { TableService } from './table/table.service';
 import { LoginComponent } from './login/login.component';
-import { NavComponent } from './nav/nav.component';
 
-import { RegistrationComponent } from './registration/registration.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableComponent } from './table/table.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const myRoots: Routes = [
 
-  { path: 'register', component: RegistrationComponent },
-  { path: 'login', component: LoginComponent},
+  { path: '', component: LoginComponent},
   { path: 'table', component: TableComponent, canActivate: [AuthGuard]}
 ];
 
@@ -26,13 +24,10 @@ const myRoots: Routes = [
   declarations: [
     AppComponent,
     LoginComponent,
-    NavComponent,
-
-    RegistrationComponent,
     TableComponent
   ],
   imports: [
-    BrowserModule,ReactiveFormsModule,FormsModule,CustomMaterialModule,BrowserAnimationsModule,Ng2SmartTableModule,
+    BrowserModule,ReactiveFormsModule,FormsModule,CustomMaterialModule,BrowserAnimationsModule,Ng2SmartTableModule,NgbModule.forRoot(),
     RouterModule.forRoot(
       myRoots,
       { enableTracing: true } // <-- debugging purposes only

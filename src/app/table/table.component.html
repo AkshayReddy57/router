@@ -1,4 +1,4 @@
-<table>
+<!--<table>
 
   <tbody>
     <tr *ngFor="let character of characters">
@@ -16,3 +16,94 @@
     [settings]="settings" 
     [source]="characters">
 </ng2-smart-table>
+
+-->
+
+<div class="text-right">
+    <button type="submit" class="btn btn-primary"  (click)="onNew()">New</button>
+  </div>
+<div class="container">
+  <div class="reglist">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Order Due Date</th>
+          <th>Customer Name</th>
+          <th>Customer Address</th>
+          <th>Customer Phone</th>
+          <th>Order Total</th>
+
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr *ngFor="let registration of registrations; let i = index">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ registration.dob.day + '/' + registration.dob.month + '/' + registration.dob.year}}</td>
+          <td>{{ registration.buyerName }}</td>
+          <td>{{ registration.customerAddress }}</td>
+          
+          <td>{{ registration.customerPhone }}</td>
+          <td>{{ registration.orderTotal }}</td>
+          <td>
+            <button type="button" class="btn btn-info"  (click)="onEdit(i)">Edit</button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-danger" (click)="onDelete(i)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    
+ 
+  </div>
+  <br>
+  <div class="regentry" *ngIf="showNew">
+    <form (ngSubmit)="onSave()">
+        <div class="form-group row">
+            <label for="dob-input" class="col-2 col-form-label">Order Due Date</label>
+            <div class="col-3 input-group">
+              <input type="text" class="form-control" placeholder="yyyy-mm-dd" name="dob" [(ngModel)]="regModel.dob" ngbDatepicker #dob="ngbDatepicker">
+              <button class="input-group-addon" (click)="dob.toggle()" type="button">
+                <img src="assets/img/calendar-icon.png" style="width: 1.2rem; height: 1rem; cursor: pointer;" />
+              </button>
+            </div>
+          </div>
+      <div class="form-group row">
+        <label for="buyername-input" class="col-2 col-form-label">Customer Name</label>
+        <div class="col-10">
+          <input class="form-control" type="text" [(ngModel)]="regModel.buyerName" name="buyerName">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="customeraddress-input" class="col-2 col-form-label">Customer Address</label>
+        <div class="col-10">
+          <input class="form-control" type="text" [(ngModel)]="regModel.customerAddress" name="customerAddress">
+        </div>
+      </div>
+
+      <div class="form-group row">
+          <label for="customerphone-input" class="col-2 col-form-label">Customer Phone</label>
+          <div class="col-10">
+            <input class="form-control" type="number" [(ngModel)]="regModel.customerPhone" name="customerPhone">
+          </div>
+        </div>
+      <div class="form-group row">
+        <label for="ordertotal-input" class="col-2 col-form-label">Order Total</label>
+        <div class="col-10">
+          <input class="form-control" type="number" [(ngModel)]="regModel.orderTotal" name="orderTotal">
+        </div>
+      </div>
+      
+      
+      <button type="submit" class="btn btn-success">{{submitType}}</button>
+      <button type="submit" class="btn btn-primary" (click)="onCancel()">Cancel</button>
+    </form>
+  </div>
+</div>
+
+
